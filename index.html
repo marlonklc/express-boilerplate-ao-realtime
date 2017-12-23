@@ -8,24 +8,24 @@
 </head>
 
 <body>
-	<pre>
-		<code contenteditable>
-			Hello! Write anything here....
-		</code>
-	</pre>
-	
-	<script src="/socket.io/socket.io.js"></script>
-  <script>
-		var socket = io();
-		var editable = document.getElementsByTagName('code')[0];
+<pre>
+  <code contenteditable>
+    Hello! Write anything here....
+  </code>
+</pre>
 
-		editable.addEventListener('keyup', function() {
-			socket.emit('edit', editable.innerHTML);
-		});
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+  var editable = document.getElementsByTagName('code')[0];
 
-		socket.on('edit', function(data) {
-			editable.innerHTML = data;
-		});
-  </script>
+  editable.addEventListener('keyup', function() {
+    socket.emit('edit', editable.innerHTML);
+  });
+
+  socket.on('edit', function(data) {
+    editable.innerHTML = data;
+  });
+</script>
 </body>
 </html>
