@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Real-time com socket.io</title>
+  <meta name="description" content="Real-time com socket.io">
+  <meta name="author" content="marlonklc">
+</head>
+
+<body>
+	<pre>
+		<code contenteditable>
+			Hello! Write anything here....
+		</code>
+	</pre>
+	
+	<script src="/socket.io/socket.io.js"></script>
+  <script>
+		var socket = io();
+		var editable = document.getElementsByTagName('code')[0];
+
+		editable.addEventListener('keyup', function() {
+			socket.emit('edit', editable.innerHTML);
+		});
+
+		socket.on('edit', function(data) {
+			editable.innerHTML = data;
+		});
+  </script>
+</body>
+</html>
